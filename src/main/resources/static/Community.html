@@ -79,7 +79,9 @@
         };
 
         socket.onmessage = (event) => {
-            appendMessage("Server: " + event.data, "received");
+            let obj = JSON.parse(event.data);
+
+            appendMessage(obj.sessionId+" " + obj.message, "received");
         };
 
         socket.onerror = (error) => {

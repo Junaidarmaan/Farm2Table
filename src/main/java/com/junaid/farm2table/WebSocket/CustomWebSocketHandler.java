@@ -7,6 +7,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.junaid.farm2table.model.CustomWebSocketMessage;
+
 public class CustomWebSocketHandler extends TextWebSocketHandler{
     
     static ArrayList<WebSocketSession> usersList = new ArrayList<>();
@@ -21,16 +24,24 @@ public class CustomWebSocketHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session,TextMessage message) throws Exception{
         String incomingMessage = message.getPayload();
-        circulateMessage(incomingMessage);
+        ObjectMapper om = new ObjectMapper();
+        CustomWebSocketMessage obj = new CustomWebSocketMessage();
+        obj.setMessage(incomingMessage);
+        obj.setSessionId(Integer.toString(session.getId().hashCode()));
+        String preparedMessage = om.writeValueAsString(obj);
+        circulateMessage(preparedMessage,session);
     }
 
-    public static void circulateMessage(String msg){
+    public static void circulateMessage(String msg,WebSocketSession sessionToOmmit){
         for(WebSocketSession session : usersList){
             TextMessage preparedMessage = new TextMessage(msg);
-            try {
-                session.sendMessage(preparedMessage);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(!session.getId().equals(sessionToOmmit.getId())){
+
+                try {
+                    session.sendMessage(preparedMessage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     } 
