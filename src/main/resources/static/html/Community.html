@@ -71,8 +71,8 @@
     </div>
 
     <script>
-        const socket = new WebSocket("ws://localhost:8080/chat");
-        // <!-- const socket = new WebSocket("wss://junnu-farm2table.onrender.com/chat"); -->
+        // const socket = new WebSocket("ws://localhost:8080/chat");
+        const socket = new WebSocket("wss://junnu-farm2table.onrender.com/chat");
 
         socket.onopen = () => {
             console.log("Connected to WebSocket server.");
