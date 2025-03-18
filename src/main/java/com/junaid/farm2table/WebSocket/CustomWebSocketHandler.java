@@ -13,7 +13,6 @@ import com.junaid.farm2table.model.CustomWebSocketMessage;
 public class CustomWebSocketHandler extends TextWebSocketHandler{
     
     static ArrayList<WebSocketSession> usersList = new ArrayList<>();
-
     @Override
     public void afterConnectionEstablished(WebSocketSession session){
         usersList.add(session);
@@ -27,7 +26,8 @@ public class CustomWebSocketHandler extends TextWebSocketHandler{
         ObjectMapper om = new ObjectMapper();
         CustomWebSocketMessage obj = new CustomWebSocketMessage();
         obj.setMessage(incomingMessage);
-        obj.setSessionId(Integer.toString(session.getId().hashCode()));
+        String customId = session.getId().substring(0,2);
+        obj.setSessionId("USER " + customId + " : ");
         String preparedMessage = om.writeValueAsString(obj);
         circulateMessage(preparedMessage,session);
     }

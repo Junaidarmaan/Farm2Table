@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Subsidy Assistance</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f8fb;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Farmer Subsidy Assistance</h1>
+        
+        <div class="card">
+            <h2>Find Available Subsidies</h2>
+            <label for="crop">Select Crop:</label>
+            <select id="crop">
+                <option value="">-- Choose Crop --</option>
+                <option value="paddy">Paddy</option>
+                <option value="wheat">Wheat</option>
+                <option value="maize">Maize</option>
+            </select>
+            <label for="region">Select Region:</label>
+            <select id="region">
+                <option value="">-- Choose Region --</option>
+                <option value="andhra">Andhra Pradesh</option>
+                <option value="tamilnadu">Tamil Nadu</option>
+                <option value="karnataka">Karnataka</option>
+            </select>
+            <button onclick="showSubsidies()">Find Subsidies</button>
+        </div>
+        
+        <div class="card hidden" id="subsidyList">
+            <h2>Available Subsidies</h2>
+            <ul id="subsidies"></ul>
+        </div>
+        
+        <div class="card">
+            <h2>Check Eligibility</h2>
+            <input type="number" id="landSize" placeholder="Enter land size (in acres)"> 
+            <button onclick="checkEligibility()">Check</button>
+            <p id="eligibilityResult"></p>
+            <p id="eligibilityBenefits" class="hidden"></p>
+        </div>
+        
+        <div class="card">
+            <h2>Application Process</h2>
+            <ol>
+                <li><strong>Step 1:</strong> Gather required documents (ID proof, land ownership proof, bank details).</li>
+                <li><strong>Step 2:</strong> Submit your application online at <a href="https://pmkisan.gov.in" target="_blank">PM-KISAN Portal</a> or the respective state subsidy portal.</li>
+                <li><strong>Step 3:</strong> Await verification from the authorities.</li>
+                <li><strong>Step 4:</strong> If approved, the subsidy amount will be credited to your registered bank account.</li>
+                <li><strong>Step 5:</strong> Track your application status online via the respective subsidy portal.</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function showSubsidies() {
+            const subsidies = {
+                paddy: {
+                    andhra: ["PM-KISAN: ₹6,000 per year", "Rythu Bandhu: ₹10,000 per acre"],
+                    tamilnadu: ["Crop Loan Subsidy", "50% Seed Subsidy"],
+                    karnataka: ["Farm Mechanization Grant", "Irrigation Subsidy"]
+                },
+                wheat: {
+                    andhra: ["Fertilizer Subsidy", "Minimum Support Price Benefit"],
+                    tamilnadu: ["50% Seed Subsidy", "Soil Health Card Assistance"],
+                    karnataka: ["Organic Farming Incentive", "Crop Insurance"]
+                }
+            };
+            
+            const crop = document.getElementById("crop").value;
+            const region = document.getElementById("region").value;
+            const subsidyList = document.getElementById("subsidies");
+            subsidyList.innerHTML = "";
+            
+            if (crop && region && subsidies[crop][region]) {
+                subsidies[crop][region].forEach(subsidy => {
+                    const li = document.createElement("li");
+                    li.textContent = subsidy;
+                    subsidyList.appendChild(li);
+                });
+                document.getElementById("subsidyList").classList.remove("hidden");
+            } else {
+                document.getElementById("subsidyList").classList.add("hidden");
+            }
+        }
+        
+        function checkEligibility() {
+            const landSize = document.getElementById("landSize").value;
+            const result = document.getElementById("eligibilityResult");
+            const benefits = document.getElementById("eligibilityBenefits");
+            if (landSize > 0 && landSize <= 5) {
+                result.innerText = "Eligible for Small Farmer Subsidies";
+                benefits.innerText = "You qualify for benefits like seed subsidy, crop insurance, and financial aid up to ₹10,000 per acre.";
+            } else if (landSize > 5) {
+                result.innerText = "Eligible for Large Farmer Subsidies";
+                benefits.innerText = "You qualify for large-scale farming incentives, mechanization grants, and higher loan assistance.";
+            } else {
+                result.innerText = "Please enter a valid land size.";
+                benefits.classList.add("hidden");
+                return;
+            }
+            benefits.classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Subsidy Assistance</title>
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; background: #eef2f7; color: #333; }
+        .container { max-width: 1200px; margin: auto; }
+        .section { margin-bottom: 30px; padding: 25px; background: #ffffff; border-radius: 15px; box-shadow: 3px 3px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .section:hover { transform: scale(1.02); }
+        .section h2 { color: #2c3e50; border-bottom: 3px solid #2c3e50; padding-bottom: 8px; font-size: 1.8em; }
+        .card-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
+        .card { flex: 1 1 calc(48% - 20px); padding: 20px; border-radius: 10px; background: #e3f2fd; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 4px 4px 12px rgba(0,0,0,0.2); }
+        .apply-button { display: inline-block; padding: 12px 18px; margin-top: 10px; background: #28a745; color: white; border: none; border-radius: 8px; text-align: center; text-decoration: none; font-weight: bold; transition: background 0.3s ease, transform 0.2s ease; }
+        .apply-button:hover { background: #218838; transform: scale(1.05); cursor: pointer; }
+        .fixed-image { border: 2px solid hwb(201 26% 39% / 0.029);border-radius:50% ;width: 50px; height: 50px; position: fixed; bottom: 20px; right: 20px; cursor: pointer; transition: transform 0.3s ease; background-color: white;}
+        .fixed-image:hover {border: 2px solid white; background-color: whitesmoke; transform: scale(1px.1); }
+        @media (max-width: 768px) { .card { flex: 1 1 100%; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #2c3e50;">Farmer Subsidy Assistance</h1>
+        
+        <div class="section">
+            <h2>Financial Assistance</h2>
+            <div class="card-container">
+                <div class="card"><h3>Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)</h3><p>Provides ₹6000 per year in three installments directly to small and marginal farmers' bank accounts, ensuring financial stability and timely support.</p><a href="https://pmkisan.gov.in/" class="apply-button">Apply Here</a></div>
+                <div class="card"><h3>Kisan Credit Card (KCC)</h3><p>Enables easy credit access at low-interest rates for farming needs like seeds, fertilizers, and equipment purchases.</p><a href="https://www.kisan.gov.in/" class="apply-button">Apply Here</a></div>
+                <div class="card"><h3>YSR Rythu Bharosa</h3><p>Andhra Pradesh farmers receive ₹13,500 per family per year, ensuring investment support for cultivation and allied farming activities.</p><a href="https://ysrrythubharosa.ap.gov.in/" class="apply-button">Apply Here</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Crop-Specific & Productivity Enhancement</h2>
+            <div class="card-container">
+                <div class="card"><h3>National Food Security Mission (NFSM)</h3><p>Aims to increase food grain production through area expansion, productivity enhancement, and farmer support.</p><a href="https://nfsm.gov.in/" class="apply-button">Apply Here</a></div>
+                <div class="card"><h3>Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)</h3><p>Ensures efficient water use via irrigation projects, watershed development, and micro-irrigation techniques.</p><a href="https://pmksy.gov.in/" class="apply-button">Apply Here</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Insurance & Risk Management</h2>
+            <div class="card-container">
+                <div class="card"><h3>Pradhan Mantri Fasal Bima Yojana (PMFBY)</h3><p>Provides crop insurance to safeguard farmers against financial losses due to climate uncertainties, pests, and diseases.</p><a href="https://pmfby.gov.in/" class="apply-button">Apply Here</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Infrastructure & Marketing Support</h2>
+            <div class="card-container">
+                <div class="card"><h3>Agriculture Infrastructure Fund</h3><p>Supports the development of warehouses, cold chains, and post-harvest storage to reduce wastage and improve farmer earnings.</p><a href="https://agriinfra.dac.gov.in/" class="apply-button">Apply Here</a></div>
+                <div class="card"><h3>e-NAM (National Agriculture Market)</h3><p>Enables farmers to trade crops online, connecting them directly with buyers for better pricing and reduced exploitation.</p><a href="https://enam.gov.in/" class="apply-button">Apply Here</a></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="farmers.html">
+        <img src="instructor.png" alt="More Info" class="fixed-image">
+    </a>
+</body>
+</html>
